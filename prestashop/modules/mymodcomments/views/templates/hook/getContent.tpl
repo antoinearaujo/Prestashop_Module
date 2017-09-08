@@ -29,11 +29,11 @@
                 <div class="col-lg-9">
                     <img src="../img/admin/enabled.gif" alt=""/>
                     <input type="radio" id="enable_comments_1" name="enable_comments" value="1"
-                           {if $enable_grades eq '1'}checked{/if} />
+                           {if $enable_comments eq '1'}checked{/if} />
                     <label class="t" for="enable_comments_1">Oui</label>
                     <img src="../img/admin/disabled.gif" alt=""/>
                     <input type="radio" id="enable_comments_0" name="enable_comments" value="0"
-                           {if $enable_grades ne '1'}checked{/if}/>
+                           {if $enable_comments ne '1'}checked{/if}/>
                     <label class="t" for="enable_comments_0">Non</label>
                 </div>
             </div>
