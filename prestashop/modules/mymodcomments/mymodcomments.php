@@ -22,8 +22,6 @@ class MyModComments extends Module
     {
         parent::install();
         $this->registerHook('displayProductTabContent');
-        $this->registerHook('displayProductDeliveryTime');
-
         return true;
     }
 
@@ -61,13 +59,6 @@ class MyModComments extends Module
         $this->processProductTabContent();
         $this->assignProductTabContent();
         return $this->display(__FILE__, 'displayProductTabContent.tpl');
-    }
-
-    public function hookDisplayProductDeliveryTime($params)
-    {
-        $this->processProductTabContent();
-        $this->assignProductTabContent();
-        return $this->display(__FILE__, 'displayProductDeliveryTime.tpl');
     }
 
     public function processProductTabContent()// Insertion commentaire du client dans la BDD
