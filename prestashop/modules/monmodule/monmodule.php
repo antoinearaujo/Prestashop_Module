@@ -106,12 +106,14 @@ class Monmodule extends Module
 
         $attributes_by_product = Product::getAttributesInformationsByProduct($id_product);
 
+        $attributes_by_product =  AttributeGroup::getAttributesGroups($this->context->language->id);
 
 
+        p($attributes_by_product);
         /*foreach($attributes_by_product as $attributes){
             $products = $attributes_by_product['id_attributes_group'];
         }
-           //p($products);
+
 
 
 
