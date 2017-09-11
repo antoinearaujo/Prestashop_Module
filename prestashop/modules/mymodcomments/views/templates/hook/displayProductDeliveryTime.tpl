@@ -1,6 +1,7 @@
-
-<h3 class="page-product-heading">
-    Je donne mon avis !</br></br>
+<h5 class="page-product-heading">
+    <strong>
+        JE DONNE MON AVIS :
+    </strong></br></br>
     <form action="" method="POST" id="comment-form">
         <div class="form-group">
             <label for="grade">Note:</label>
@@ -28,4 +29,4 @@
             </button>
         </div>
     </form>
-</h3>
+</h5>
