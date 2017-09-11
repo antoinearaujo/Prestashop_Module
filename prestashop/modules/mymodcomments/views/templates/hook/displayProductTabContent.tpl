@@ -3,16 +3,35 @@
 </h3>
 <div class="rte">
     {foreach from=$comments item=comment}
-        <p>
         <div class="well">
             <h4> {$comment.comment}</h4>
             <br>
-            <h4><strong>Note:</strong></h4>
-            <h5> {$comment.grade}/5</h5>
-            <br>
+            {if {$comment.grade} eq '1'}
+                <img src="img/etoile.png" alt=""/>
+            {/if}
+            {if {$comment.grade} eq '2'}
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+            {/if}
+            {if {$comment.grade} eq '3'}
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+            {/if}
+            {if {$comment.grade} eq '4'}
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+            {/if}
+            {if {$comment.grade} eq '5'}
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+                <img src="img/etoile.png" alt=""/>
+            {/if}
         </div>
-        </p>
-        <br>
     {/foreach}
 </div>
 <h3 class="page-product-heading">
