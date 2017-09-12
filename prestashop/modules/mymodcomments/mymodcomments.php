@@ -59,7 +59,9 @@ class MyModComments extends Module
                 'input' => array(
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Autoriser l\'affichage des avis'),
+                        'label' => $this->l('Avis'),
+                        'desc' => $this->l(''),     // description
+                        'hint' => $this->l('Autoriser l`affichage des avis'),     //description on scroll
                         'desc' => $this->l(''),
                         'name' => 'MYMOD_GRADES',
                         'required' => true,
@@ -76,9 +78,9 @@ class MyModComments extends Module
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Autoriser l\'écriture d\'un avis'),
+                        'label' => $this->l('Commentaires'),
                         'desc' => $this->l(''),     // description
-                        'hint' => $this->l(''),     //description on scroll
+                        'hint' => $this->l('Autoriser l`écriture d`un avis'),     //description on scroll
                         'name' => 'MYMOD_COMMENTS',
                         'required' => true,
                         'values' => array(
