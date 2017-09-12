@@ -29,8 +29,115 @@ class MyModComments extends Module
     {
         $this->assignConfiguration();
         $this->processConfiguration();
-        return $this->display(__FILE__, 'getContent.tpl');
+
+/////////////////////////////////////////////////////
+        $html = '';
+
+        if (Tools::isSubmit('submit' . $this->name)) {
+            if (Validate::isUnsignedInt(Tools::getValue('MYMOD_GRADES')) && Validate::isUnsignedInt(Tools::getValue('MYMOD_COMMENTS'))) {
+                Configuration::updateValue('MYMOD_GRADES', (int)(Tools::getValue('MYMOD_GRADES')));
+                Configuration::updateValue('MYMOD_COMMENTS', (int)(Tools::getValue('MYMOD_COMMENTS')));
+
+//                $this->_clearCache('blockpaymentlogo.tpl');
+                $html .= $this->displayConfirmation($this->l('The settings have been updated.'));
+            }
+        }
+        return $html . $this->renderForm();
+
+        //return $this->display(__FILE__, 'getContent.tpl');
     }
+
+    public function renderForm()
+    {
+        $fields_form = array(
+            'form' => array(
+                'legend' => array(
+                    'title' => $this->l('Settings'),
+                    'icon' => 'icon-cogs'
+                ),
+                'input' => array(
+                    array(
+                        'type' => 'radio',                               // This is an <input type="checkbox"> tag.
+                        'label' => $this->l('Activer les notes'),        // The <label> for this <input> tag.
+                        'desc' => $this->l(''),   // A help text, displayed right next to the <input> tag.
+                        'name' => 'MYMOD_GRADES',                              // The content of the 'id' attribute of the <input> tag.
+                        'required' => true,                                  // If set to true, this option must be set.
+                        'class' => 't',                                   // The content of the 'class' attribute of the <label> tag for the <input> tag.
+                        'is_bool' => true,                                  // If set to true, this means you want to display a yes/no or true/false option.
+                        // The CSS styling will therefore use green mark for the option value '1', and a red mark for value '2'.
+                        // If set to false, this means there can be more than two radio buttons,
+                        // and the option label text will be displayed instead of marks.
+                        'values' => array(                                 // $values contains the data itself.
+                            array(
+                                'id' => 'active_on',                           // The content of the 'id' attribute of the <input> tag, and of the 'for' attribute for the <label> tag.
+                                'value' => 1,                                     // The content of the 'value' attribute of the <input> tag.
+                                'label' => $this->l('Enabled')                    // The <label> for this radio button.
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => 0,
+                                'label' => $this->l('Disabled')
+                            )
+                        )
+                    ),
+                    array(
+                        'type' => 'radio',                               // This is an <input type="checkbox"> tag.
+                        'label' => $this->l('Activer les commentaires'),        // The <label> for this <input> tag.
+                        'desc' => $this->l(''),   // A help text, displayed right next to the <input> tag.
+                        'name' => 'MYMOD_COMMENTS',                              // The content of the 'id' attribute of the <input> tag.
+                        'required' => true,                                  // If set to true, this option must be set.
+                        'class' => 't',                                   // The content of the 'class' attribute of the <label> tag for the <input> tag.
+                        'is_bool' => true,                                  // If set to true, this means you want to display a yes/no or true/false option.
+                        // The CSS styling will therefore use green mark for the option value '1', and a red mark for value '2'.
+                        // If set to false, this means there can be more than two radio buttons,
+                        // and the option label text will be displayed instead of marks.
+                        'values' => array(                                 // $values contains the data itself.
+                            array(
+                                'id' => 'active_on',                           // The content of the 'id' attribute of the <input> tag, and of the 'for' attribute for the <label> tag.
+                                'value' => 1,                                     // The content of the 'value' attribute of the <input> tag.
+                                'label' => $this->l('Enabled')                    // The <label> for this radio button.
+                            ),
+                            array(
+                                'id' => 'active_off',
+                                'value' => 0,
+                                'label' => $this->l('Disabled')
+                            )
+                        )
+                    )
+
+                ),
+                'submit' => array(
+                    'title' => $this->l('Save'),
+                )
+            )
+        );
+
+        $helper = new HelperForm();
+        $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
+        $helper->default_form_language = $lang->id;
+        $helper->allow_employee_form_lang = Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') ? Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') : 0;
+        $helper->identifier = $this->identifier;
+        $helper->submit_action = 'submit' . $this->name;
+        $helper->currentIndex = $this->context->link->getAdminLink('AdminModules', false) . '&configure=' . $this->name . '&tab_module=' . $this->tab . '&module_name=' . $this->name;
+        $helper->token = Tools::getAdminTokenLite('AdminModules');
+        $helper->tpl_vars = array(
+            'fields_value' => $this->getConfigFieldsValues(),
+            'languages' => $this->context->controller->getLanguages(),
+            'id_language' => $this->context->language->id
+        );
+
+        return $helper->generateForm(array($fields_form));
+    }
+
+    public function getConfigFieldsValues()
+    {
+        return array(
+            'MYMOD_GRADES' => Tools::getValue('MYMOD_GRADES', Configuration::get('MYMOD_GRADES')),
+            'MYMOD_COMMENTS' => Tools::getValue('MYMOD_COMMENTS', Configuration::get('MYMOD_COMMENTS')),
+
+        );
+    }
+
 
     public function processConfiguration() // Recuperation des valeurs
     {
