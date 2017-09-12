@@ -1,10 +1,10 @@
-{if $enable_comments || $enable_grades}
+{if $enable_comments || $enable_grades} {* si au moins une des deux variables est a true *}
 <h3 class="page-product-heading">
         AVIS SUR CE PRODUIT
     </h3>
     <div class="rte">
         {foreach from=$comments item=comment}
-            {if $enable_grades}
+            {if $enable_grades} {* si grades est a true (notes) *}
                 <div class="well">
                     <div class="jumbotron">
                         <h4><strong>{$comment.comment}</strong></h4>
@@ -43,7 +43,7 @@
     </div>
     </h3>
 
-    {if $enable_comments}
+    {if $enable_comments} {* si comments est a true (commentaires) *}
         <h5 class="page-product-heading">
             <strong>
                 JE DONNE MON AVIS :

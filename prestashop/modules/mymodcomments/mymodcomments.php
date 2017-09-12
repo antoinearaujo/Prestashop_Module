@@ -34,8 +34,6 @@ class MyModComments extends Module
     {
         $this->assignConfiguration();
         $this->processConfiguration();
-
-/////////////////////////////////////////////////////
         $html = '';
 
         if (Tools::isSubmit('submit' . $this->name)) {
@@ -48,11 +46,9 @@ class MyModComments extends Module
             }
         }
         return $html . $this->renderForm();
-
-        //return $this->display(__FILE__, 'getContent.tpl');
     }
 
-    public function renderForm()
+    public function renderForm() // Construction du formulaire (BackOffice)
     {
         $fields_form = array(
             'form' => array(
@@ -128,7 +124,7 @@ class MyModComments extends Module
         return $helper->generateForm(array($fields_form));
     }
 
-    public function getConfigFieldsValues()
+    public function getConfigFieldsValues() // Sauvegarder la valeur enregistrée dans la configuration du module
     {
         return array(
             'MYMOD_GRADES' => Tools::getValue('MYMOD_GRADES', Configuration::get('MYMOD_GRADES')),
@@ -184,7 +180,7 @@ class MyModComments extends Module
         }
     }
 
-    public function assignProductTabContent()
+    public function assignProductTabContent() // Assignation des valeurs a des variables
     {
         $enable_grades = Configuration::get('MYMOD_GRADES');
         $enable_comments = Configuration::get('MYMOD_COMMENTS');
