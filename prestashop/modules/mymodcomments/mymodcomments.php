@@ -9,8 +9,8 @@ class MyModComments extends Module
         $this->tab = 'front_office_features';
         $this->version = '0.0.1';
         $this->author = 'Antoine Araujo';
-        $this->displayName = 'Mon module de commentaire produit';
-        $this->description = 'Avec ce module, mes clients pourront commenter les produits';
+        $this->displayName = 'Module de commentaire produit';
+        $this->description = 'Avec ce module, mes clients pourront commenter les produits et donner leurs avis';
         $this->bootstrap = true;
 
 
@@ -21,6 +21,11 @@ class MyModComments extends Module
     public function install() // Installation et amorçage du Hook
     {
         parent::install();
+
+        // Activate every option by default
+        Configuration::updateValue('MYMOD_GRADES', 1);
+        Configuration::updateValue('MYMOD_COMMENTS', 1);
+
         $this->registerHook('displayProductTabContent');
         return true;
     }
@@ -57,21 +62,18 @@ class MyModComments extends Module
                 ),
                 'input' => array(
                     array(
-                        'type' => 'radio',                               // This is an <input type="checkbox"> tag.
-                        'label' => $this->l('Activer les notes'),        // The <label> for this <input> tag.
-                        'desc' => $this->l(''),   // A help text, displayed right next to the <input> tag.
-                        'name' => 'MYMOD_GRADES',                              // The content of the 'id' attribute of the <input> tag.
-                        'required' => true,                                  // If set to true, this option must be set.
-                        'class' => 't',                                   // The content of the 'class' attribute of the <label> tag for the <input> tag.
-                        'is_bool' => true,                                  // If set to true, this means you want to display a yes/no or true/false option.
-                        // The CSS styling will therefore use green mark for the option value '1', and a red mark for value '2'.
-                        // If set to false, this means there can be more than two radio buttons,
-                        // and the option label text will be displayed instead of marks.
-                        'values' => array(                                 // $values contains the data itself.
+                        'type' => 'switch',
+                        'label' => $this->l('Autoriser l\'affichage des avis'),
+                        'desc' => $this->l(''),
+                        'name' => 'MYMOD_GRADES',
+                        'required' => true,
+                        'class' => 't',
+                        'is_bool' => true,
+                        'values' => array(
                             array(
-                                'id' => 'active_on',                           // The content of the 'id' attribute of the <input> tag, and of the 'for' attribute for the <label> tag.
-                                'value' => 1,                                     // The content of the 'value' attribute of the <input> tag.
-                                'label' => $this->l('Enabled')                    // The <label> for this radio button.
+                                'id' => 'active_on',
+                                'value' => 1,
+                                'label' => $this->l('Enabled')
                             ),
                             array(
                                 'id' => 'active_off',
@@ -81,21 +83,18 @@ class MyModComments extends Module
                         )
                     ),
                     array(
-                        'type' => 'radio',                               // This is an <input type="checkbox"> tag.
-                        'label' => $this->l('Activer les commentaires'),        // The <label> for this <input> tag.
-                        'desc' => $this->l(''),   // A help text, displayed right next to the <input> tag.
-                        'name' => 'MYMOD_COMMENTS',                              // The content of the 'id' attribute of the <input> tag.
-                        'required' => true,                                  // If set to true, this option must be set.
-                        'class' => 't',                                   // The content of the 'class' attribute of the <label> tag for the <input> tag.
-                        'is_bool' => true,                                  // If set to true, this means you want to display a yes/no or true/false option.
-                        // The CSS styling will therefore use green mark for the option value '1', and a red mark for value '2'.
-                        // If set to false, this means there can be more than two radio buttons,
-                        // and the option label text will be displayed instead of marks.
-                        'values' => array(                                 // $values contains the data itself.
+                        'type' => 'switch',
+                        'label' => $this->l('Autoriser l\'écriture d\'un avis'),
+                        'desc' => $this->l(''),
+                        'name' => 'MYMOD_COMMENTS',
+                        'required' => true,
+                        'class' => 't',
+                        'is_bool' => true,
+                        'values' => array(
                             array(
-                                'id' => 'active_on',                           // The content of the 'id' attribute of the <input> tag, and of the 'for' attribute for the <label> tag.
-                                'value' => 1,                                     // The content of the 'value' attribute of the <input> tag.
-                                'label' => $this->l('Enabled')                    // The <label> for this radio button.
+                                'id' => 'active_on',
+                                'value' => 1,
+                                'label' => $this->l('Enabled')
                             ),
                             array(
                                 'id' => 'active_off',
