@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>blockleorelatedproducts</name>
+	<displayName><![CDATA[Leo Produits Associ&eacute;s Bloquer]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Afficher les produits dans la m&ecirc;me cat&eacute;gorie ou Rapport&eacute; par Tag .... dans le carrousel.]]></description>
+	<author><![CDATA[leotheme]]></author>
+	<tab><![CDATA[landofcoder]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

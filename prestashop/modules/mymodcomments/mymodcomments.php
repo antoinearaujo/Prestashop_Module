@@ -148,6 +148,10 @@ class MyModComments extends Module
         $enable_comments = Configuration::get('MYMOD_COMMENTS');
         $this->context->smarty->assign('enable_grades', $enable_grades);
         $this->context->smarty->assign('enable_comments', $enable_comments);
+        $this->context->smarty->assign(array(
+            'enable_grades' => $enable_grades,
+            'enable_comment' => $enable_comments,
+        ));
 
     }
 
@@ -184,9 +188,12 @@ class MyModComments extends Module
         SELECT * FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . (int)$id_product);
 
-        $this->context->smarty->assign('enable_grades', $enable_grades);
-        $this->context->smarty->assign('enable_comments', $enable_comments);
-        $this->context->smarty->assign('comments', $comments);
+        $this->context->smarty->assign(array(
+            'enable_grades'=> $enable_grades,
+            'enable_comments'=> $enable_comments,
+            'comments'=> $comments,
+        ));
+
 
     }
 

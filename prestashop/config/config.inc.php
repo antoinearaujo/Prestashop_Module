@@ -23,6 +23,7 @@
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
+@ini_set('upload_max_filesize', '100M');
 
 $currentDir = dirname(__FILE__);
 
@@ -33,6 +34,7 @@ if (is_file($currentDir.'/defines_custom.inc.php')) {
 require_once($currentDir.'/defines.inc.php');
 
 $start_time = microtime(true);
+
 
 /* SSL configuration */
 define('_PS_SSL_PORT_', 443);

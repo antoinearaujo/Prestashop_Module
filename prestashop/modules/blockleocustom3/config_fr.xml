@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>blockleocustom3</name>
+	<displayName><![CDATA[Afficher Accueil Bas HTML personnalis&eacute;]]></displayName>
+	<version><![CDATA[1.1]]></version>
+	<description><![CDATA[Afficher HTML personnalis&eacute;, soutien Tous les crochets]]></description>
+	<author><![CDATA[leotheme]]></author>
+	<tab><![CDATA[]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>
