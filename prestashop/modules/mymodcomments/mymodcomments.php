@@ -63,16 +63,12 @@ class MyModComments extends Module
                         'desc' => $this->l(''),
                         'name' => 'MYMOD_GRADES',
                         'required' => true,
-                        'class' => 't',
-                        'is_bool' => true,
                         'values' => array(
                             array(
-                                'id' => 'active_on',
                                 'value' => 1,
                                 'label' => $this->l('Enabled')
                             ),
                             array(
-                                'id' => 'active_off',
                                 'value' => 0,
                                 'label' => $this->l('Disabled')
                             )
@@ -81,19 +77,16 @@ class MyModComments extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('Autoriser l\'écriture d\'un avis'),
-                        'desc' => $this->l(''),
+                        'desc' => $this->l(''),     // description
+                        'hint' => $this->l(''),     //description on scroll
                         'name' => 'MYMOD_COMMENTS',
                         'required' => true,
-                        'class' => 't',
-                        'is_bool' => true,
                         'values' => array(
                             array(
-                                'id' => 'active_on',
                                 'value' => 1,
                                 'label' => $this->l('Enabled')
                             ),
                             array(
-                                'id' => 'active_off',
                                 'value' => 0,
                                 'label' => $this->l('Disabled')
                             )
