@@ -25,6 +25,8 @@ class WelcomeModule extends Module
         // Activate every option by default
         Configuration::updateValue('WM_MOD_BOOL', 1);
         Configuration::updateValue('WM_MOD_MSG', 'Entrez votre message ici');
+        Configuration::updateValue('WM_MOD_POL', 1);
+
 
         $this->registerHook('displayNav');
         $this->registerHook('displayTop');
@@ -37,17 +39,10 @@ class WelcomeModule extends Module
     public function getContent() // Configuration du module (BackOffice)
     {
         $this->assignConfiguration();
-        $this->processConfiguration();
-        $html = '';
 
-        if (Tools::isSubmit('submit' . $this->name)) {
-            if (Validate::isUnsignedInt(Tools::getValue('WM_MOD_BOOL')) && Validate::isMessage(Tools::getValue('WM_MOD_MSG'))) {
-                Configuration::updateValue('WM_MOD_BOOL', (int)(Tools::getValue('WM_MOD_BOOL')));
-                Configuration::updateValue('WM_MOD_MSG', (string)(Tools::getValue('WM_MOD_MSG')));
+        $html = $this->processConfiguration();
+        $html .= $this->displayConfirmation($this->l('The settings have been updated.'));
 
-                $html .= $this->displayConfirmation($this->l('The settings have been updated.'));
-            }
-        }
         return $html . $this->renderForm();
     }
 
@@ -77,6 +72,31 @@ class WelcomeModule extends Module
                                 'value' => 0,
                                 'label' => $this->l('Disabled')
                             )
+                        )
+                    ),
+                    array(
+                        'type' => 'select',                              // This is a <select> tag.
+                        'label' => $this->l('Taille de la police'),  // A help text, displayed right next to the <select> tag.
+                        'name' => 'WM_MOD_POL',                     // The content of the 'id' attribute of the <select> tag.
+                        'required' => true,
+                        // If set to true, this option must be set.
+                        'options' => array(
+                            'query' => array(
+                                array(
+                                    'id_option' => 1,       // The value of the 'value' attribute of the <option> tag.
+                                    'name' => 'Grosse Police'   // The value of the text content of the  <option> tag.
+                                ),
+                                array(
+                                    'id_option' => 2,
+                                    'name' => 'Moyenne Police'
+                                ),
+                                array(
+                                    'id_option' => 3,
+                                    'name' => 'Petite Police'
+                                ),
+                            ),
+                            'id' => 'id_option',                           // The value of the 'id' key must be the same as the key for 'value' attribute of the <option> tag in each $options sub-array.
+                            'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
                         )
                     ),
 
@@ -118,6 +138,8 @@ class WelcomeModule extends Module
         return array(
             'WM_MOD_BOOL' => Tools::getValue('WM_MOD_BOOL', Configuration::get('WM_MOD_BOOL')),
             'WM_MOD_MSG' => Tools::getValue('WM_MOD_MSG', Configuration::get('WM_MOD_MSG')),
+            'WM_MOD_POL' => Tools::getValue('WM_MOD_POL', Configuration::get('WM_MOD_POL')),
+
 
         );
     }
@@ -125,28 +147,31 @@ class WelcomeModule extends Module
 
     public function processConfiguration() // Recuperation des valeurs
     {
-        if (Tools::isSubmit('submit_mymodwelcome_form')) {
-            $enable_bool = Tools::getValue('enable_bool');
-            $enable_msg = Tools::getValue('enable_msg');
 
-            Configuration::updateValue('WM_MOD_BOOL', $enable_bool);
-            Configuration::updateValue('WM_MOD_MSG', $enable_msg);
+        if (Tools::isSubmit('submit' . $this->name)) {
+            if (Validate::isUnsignedInt(Tools::getValue('WM_MOD_BOOL')) && Validate::isMessage(Tools::getValue('WM_MOD_MSG'))) {
+                Configuration::updateValue('WM_MOD_BOOL', (int)(Tools::getValue('WM_MOD_BOOL')));
+                Configuration::updateValue('WM_MOD_MSG', (string)(Tools::getValue('WM_MOD_MSG')));
+                Configuration::updateValue('WM_MOD_POL', (string)(Tools::getValue('WM_MOD_POL')));
 
-            $this->context->smarty->assign('confirmation', 'ok'); // Message de confirmation
 
+            }
         }
+
     }
 
     public function assignConfiguration() // Assignation des variables
     {
 
-        $enable_bool = Configuration::get('WM_MOD_BOOL');
-        $enable_msg = Configuration::get('WM_MOD_MSG');
-
+        $enable_bool = (bool)Configuration::get('WM_MOD_BOOL');
+        $enable_msg = (string)Configuration::get('WM_MOD_MSG');
+        $enable_pol = (int)Configuration::get('WM_MOD_POL');
 
         $this->context->smarty->assign(array(
             'enable_bool' => $enable_bool,
             'enable_msg' => $enable_msg,
+            'enable_pol' => $enable_pol,
+
 
         ));
 

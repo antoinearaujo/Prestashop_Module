@@ -1,5 +1,5 @@
 {if $enable_comments || $enable_grades} {* si au moins une des deux variables est a true *}
-<h3 class="page-product-heading">
+    <h3 class="page-product-heading">
         AVIS SUR CE PRODUIT
     </h3>
     <div class="rte">
