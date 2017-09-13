@@ -57,11 +57,30 @@ class WelcomeModule extends Module
                 'input' => array(
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Bienvenue'),
+                        'label' => $this->l('Autoriser l`affichage'),
                         'desc' => $this->l(''),     // description
                         'hint' => $this->l('Autoriser l`affichage d`un message de bienvenue'),     //description on scroll
                         'desc' => $this->l(''),
                         'name' => 'WM_MOD_BOOL',
+                        'required' => true,
+                        'values' => array(
+                            array(
+                                'value' => 1,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'value' => 0,
+                                'label' => $this->l('Disabled')
+                            )
+                        )
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('Majuscule ?'),
+                        'desc' => $this->l(''),     // description
+                        'hint' => $this->l('Choisissez si votre texte doit apparaître en majuscule'),     //description on scroll
+                        'desc' => $this->l(''),
+                        'name' => 'WM_MOD_MAJ',
                         'required' => true,
                         'values' => array(
                             array(
@@ -101,7 +120,7 @@ class WelcomeModule extends Module
                     ),
                     array(
                         'type' => 'select',
-                        'label' => $this->l('Alignement du text'),
+                        'label' => $this->l('Alignement du texte'),
                         'hint' => $this->l('Choisir l`alignement du texte'),     //description on scroll
                         'name' => 'WM_MOD_ALI',
                         'required' => true,
@@ -120,9 +139,43 @@ class WelcomeModule extends Module
                                     'name' => 'Gauche'
                                 ),
                             ),
-                            'id' => 'id_option',                           // The value of the 'id' key must be the same as the key for 'value' attribute of the <option> tag in each $options sub-array.
-                            'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
+                            'id' => 'id_option',
+                            'name' => 'name'
                         )
+                    ),
+                    array(
+                        'type' => 'select',
+                        'label' => $this->l('Style de la police'),
+                        'hint' => $this->l('Choisir le style de la police'),     //description on scroll
+                        'name' => 'WM_MOD_STY',
+                        'required' => true,
+                        'options' => array(
+                            'query' => array(
+                                array(
+                                    'id_option' => 'Cursive',
+                                    'name' => 'Cursive'
+                                ),
+                                array(
+                                    'id_option' => 'Arial',
+                                    'name' => 'Arial'
+                                ),
+                                array(
+                                    'id_option' => 'Impact',
+                                    'name' => 'Impact'
+                                ),
+                            ),
+                            'id' => 'id_option',
+                            'name' => 'name'
+                        )
+                    ),
+                    array(
+                        'type' => 'color',
+                        'label' => $this->l('Couleur'),
+                        'name' => 'WM_MOD_COL',
+                        'class' => 'lg',
+                        'required' => true,
+                        'desc' => $this->l(''),
+                        'hint' => $this->l('Choisir la couleur du texte'),
                     ),
 
                     array(
@@ -140,6 +193,7 @@ class WelcomeModule extends Module
                 )
             )
         );
+
 
         $helper = new HelperForm();
         $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
@@ -165,6 +219,9 @@ class WelcomeModule extends Module
             'WM_MOD_MSG' => Tools::getValue('WM_MOD_MSG', Configuration::get('WM_MOD_MSG')),
             'WM_MOD_POL' => Tools::getValue('WM_MOD_POL', Configuration::get('WM_MOD_POL')),
             'WM_MOD_ALI' => Tools::getValue('WM_MOD_ALI', Configuration::get('WM_MOD_ALI')),
+            'WM_MOD_COL' => Tools::getValue('WM_MOD_COL', Configuration::get('WM_MOD_COL')),
+            'WM_MOD_STY' => Tools::getValue('WM_MOD_STY', Configuration::get('WM_MOD_STY')),
+            'WM_MOD_MAJ' => Tools::getValue('WM_MOD_MAJ', Configuration::get('WM_MOD_MAJ')),
 
 
         );
@@ -180,6 +237,9 @@ class WelcomeModule extends Module
                 Configuration::updateValue('WM_MOD_MSG', (string)(Tools::getValue('WM_MOD_MSG')));
                 Configuration::updateValue('WM_MOD_POL', (string)(Tools::getValue('WM_MOD_POL')));
                 Configuration::updateValue('WM_MOD_ALI', (string)(Tools::getValue('WM_MOD_ALI')));
+                Configuration::updateValue('WM_MOD_COL', (string)(Tools::getValue('WM_MOD_COL')));
+                Configuration::updateValue('WM_MOD_STY', (string)(Tools::getValue('WM_MOD_STY')));
+                Configuration::updateValue('WM_MOD_MAJ', (string)(Tools::getValue('WM_MOD_MAJ')));
 
 
             }
@@ -194,12 +254,19 @@ class WelcomeModule extends Module
         $enable_msg = (string)Configuration::get('WM_MOD_MSG');
         $enable_pol = (int)Configuration::get('WM_MOD_POL');
         $enable_ali = (int)Configuration::get('WM_MOD_ALI');
+        $enable_col = (string)Configuration::get('WM_MOD_COL');
+        $enable_sty = (string)Configuration::get('WM_MOD_STY');
+        $enable_maj = (string)Configuration::get('WM_MOD_MAJ');
+
 
         $this->context->smarty->assign(array(
             'enable_bool' => $enable_bool,
             'enable_msg' => $enable_msg,
             'enable_pol' => $enable_pol,
             'enable_ali' => $enable_ali,
+            'enable_col' => $enable_col,
+            'enable_sty' => $enable_sty,
+            'enable_maj' => $enable_maj,
 
 
         ));
