@@ -1,0 +1,6 @@
+*ERROR* 	2017/09/13 - 12:18:08: Unknown column 'date' in 'field list'<br /><br /><pre>
+        SELECT `date` FROM `ps_mymod_comment`
+        WHERE `id_product` = 4</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/13 - 12:58:23: Unknown column 'date' in 'field list'<br /><br /><pre>
+        SELECT `date` FROM `ps_mymod_comment`
+        WHERE `id_product` = 4</pre> at line 791 in file classes/db/Db.php

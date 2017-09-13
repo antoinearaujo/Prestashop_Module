@@ -99,6 +99,31 @@ class WelcomeModule extends Module
                             'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
                         )
                     ),
+                    array(
+                        'type' => 'select',
+                        'label' => $this->l('Alignement du text'),
+                        'hint' => $this->l('Choisir l`alignement du texte'),     //description on scroll
+                        'name' => 'WM_MOD_ALI',
+                        'required' => true,
+                        'options' => array(
+                            'query' => array(
+                                array(
+                                    'id_option' => 1,
+                                    'name' => 'Droite'
+                                ),
+                                array(
+                                    'id_option' => 2,
+                                    'name' => 'Milieu'
+                                ),
+                                array(
+                                    'id_option' => 3,
+                                    'name' => 'Gauche'
+                                ),
+                            ),
+                            'id' => 'id_option',                           // The value of the 'id' key must be the same as the key for 'value' attribute of the <option> tag in each $options sub-array.
+                            'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
+                        )
+                    ),
 
                     array(
                         'type' => 'textarea',
@@ -139,6 +164,7 @@ class WelcomeModule extends Module
             'WM_MOD_BOOL' => Tools::getValue('WM_MOD_BOOL', Configuration::get('WM_MOD_BOOL')),
             'WM_MOD_MSG' => Tools::getValue('WM_MOD_MSG', Configuration::get('WM_MOD_MSG')),
             'WM_MOD_POL' => Tools::getValue('WM_MOD_POL', Configuration::get('WM_MOD_POL')),
+            'WM_MOD_ALI' => Tools::getValue('WM_MOD_ALI', Configuration::get('WM_MOD_ALI')),
 
 
         );
@@ -153,6 +179,7 @@ class WelcomeModule extends Module
                 Configuration::updateValue('WM_MOD_BOOL', (int)(Tools::getValue('WM_MOD_BOOL')));
                 Configuration::updateValue('WM_MOD_MSG', (string)(Tools::getValue('WM_MOD_MSG')));
                 Configuration::updateValue('WM_MOD_POL', (string)(Tools::getValue('WM_MOD_POL')));
+                Configuration::updateValue('WM_MOD_ALI', (string)(Tools::getValue('WM_MOD_ALI')));
 
 
             }
@@ -166,11 +193,13 @@ class WelcomeModule extends Module
         $enable_bool = (bool)Configuration::get('WM_MOD_BOOL');
         $enable_msg = (string)Configuration::get('WM_MOD_MSG');
         $enable_pol = (int)Configuration::get('WM_MOD_POL');
+        $enable_ali = (int)Configuration::get('WM_MOD_ALI');
 
         $this->context->smarty->assign(array(
             'enable_bool' => $enable_bool,
             'enable_msg' => $enable_msg,
             'enable_pol' => $enable_pol,
+            'enable_ali' => $enable_ali,
 
 
         ));
@@ -194,18 +223,5 @@ class WelcomeModule extends Module
         return $this->hookDisplayNav($params);
     }
 
-
-    /*public function assignProductTabContent() // Assignation des valeurs a des variables
-    {
-        $enable_bool = Configuration::get('WM_MOD_BOOL');
-        $enable_msg = Configuration::get('WM_MOD_MSG');
-
-        $this->context->smarty->assign(array(
-                'enable_bool' => $enable_bool,
-                'enable_msg' => $enable_msg)
-        );
-
-
-    }*/
 
 }
