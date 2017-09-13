@@ -75,16 +75,16 @@ class WelcomeModule extends Module
                         )
                     ),
                     array(
-                        'type' => 'select',                              // This is a <select> tag.
-                        'label' => $this->l('Taille de la police'),  // A help text, displayed right next to the <select> tag.
-                        'name' => 'WM_MOD_POL',                     // The content of the 'id' attribute of the <select> tag.
+                        'type' => 'select',
+                        'label' => $this->l('Taille de la police'),
+                        'hint' => $this->l('Choisir la taille de la police'),     //description on scroll
+                        'name' => 'WM_MOD_POL',
                         'required' => true,
-                        // If set to true, this option must be set.
                         'options' => array(
                             'query' => array(
                                 array(
-                                    'id_option' => 1,       // The value of the 'value' attribute of the <option> tag.
-                                    'name' => 'Grosse Police'   // The value of the text content of the  <option> tag.
+                                    'id_option' => 1,
+                                    'name' => 'Grosse Police'
                                 ),
                                 array(
                                     'id_option' => 2,
