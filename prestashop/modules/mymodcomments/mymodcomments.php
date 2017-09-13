@@ -90,6 +90,16 @@ class MyModComments extends Module
                         )
                     ),
                     array(
+                        'type' => 'text',
+                        'label' => $this->l('Nombre de commentaires'),
+                        'name' => 'MYMOD_NBCOM',
+                        'class' => 'lg',
+                        'required' => true,
+                        'desc' => $this->l(''),
+                        'hint' => $this->l('Entrez le nombre de commentaires que vous voulez afficher'),     //description on scroll
+
+                    ),
+                    array(
                         'type' => 'switch',
                         'label' => $this->l('Majuscule ?'),
                         'desc' => $this->l(''),     // description
@@ -200,6 +210,7 @@ class MyModComments extends Module
             'MYMOD_COL' => Tools::getValue('MYMOD_COL', Configuration::get('MYMOD_COL')),
             'MYMOD_STY' => Tools::getValue('MYMOD_STY', Configuration::get('MYMOD_STY')),
             'MYMOD_POL' => Tools::getValue('MYMOD_POL', Configuration::get('MYMOD_POL')),
+            'MYMOD_NBCOM' => Tools::getValue('MYMOD_NBCOM', Configuration::get('MYMOD_NBCOM')),
 
         );
     }
@@ -215,6 +226,7 @@ class MyModComments extends Module
                 Configuration::updateValue('MYMOD_COL', (string)(Tools::getValue('MYMOD_COL')));
                 Configuration::updateValue('MYMOD_STY', (string)(Tools::getValue('MYMOD_STY')));
                 Configuration::updateValue('MYMOD_POL', (int)(Tools::getValue('MYMOD_POL')));
+                Configuration::updateValue('MYMOD_NBCOM', (int)(Tools::getValue('MYMOD_NBCOM')));
 
             }
         }
@@ -229,6 +241,7 @@ class MyModComments extends Module
         $enable_col = (string)Configuration::get('MYMOD_COL');
         $enable_sty = (string)Configuration::get('MYMOD_STY');
         $enable_pol = (int)Configuration::get('MYMOD_POL');
+        $enable_nbcom = (int)Configuration::get('MYMOD_NBCOM');
 
         $this->context->smarty->assign(array(
             'enable_grades' => $enable_grades,
@@ -237,6 +250,8 @@ class MyModComments extends Module
             'enable_col' => $enable_col,
             'enable_sty' => $enable_sty,
             'enable_pol' => $enable_pol,
+            'enable_nbcom' => $enable_nbcom,
+
 
         ));
 
@@ -274,6 +289,7 @@ class MyModComments extends Module
         $enable_col = Configuration::get('MYMOD_COL');
         $enable_sty = Configuration::get('MYMOD_STY');
         $enable_pol = Configuration::get('MYMOD_POL');
+        $enable_nbcom = Configuration::get('MYMOD_NBCOM');
 
 
         $id_product = Tools::getValue('id_product');
@@ -288,7 +304,7 @@ class MyModComments extends Module
             'enable_col' => $enable_col,
             'enable_sty' => $enable_sty,
             'enable_pol' => $enable_pol,
-
+            'enable_nbcom' => $enable_nbcom,
 
             'comments' => $comments,
         ));

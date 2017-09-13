@@ -3,42 +3,42 @@
         AVIS SUR CE PRODUIT
     </h3>
     <div class="rte">
-        {foreach from=$comments item=comment}
-            {if $enable_grades} {* si grades est a true (notes) *}
-                <div class="well">
-                    <div class="jumbotron">
-                        <h4><strong>{$comment.comment}</strong></h4>
-                    </div>
-
-                    <br>
-                    {if {$comment.grade} eq '1'}
-                        <img src="img/etoile.png" alt=""/>
-                    {/if}
-                    {if {$comment.grade} eq '2'}
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                    {/if}
-                    {if {$comment.grade} eq '3'}
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                    {/if}
-                    {if {$comment.grade} eq '4'}
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                    {/if}
-                    {if {$comment.grade} eq '5'}
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                        <img src="img/etoile.png" alt=""/>
-                    {/if}
-                </div>
+        {foreach from=$comments key=i item=comment name=foo}
+            {if $smarty.foreach.foo.index == {$enable_nbcom}}
+                {break}
             {/if}
+            <div class="well">
+                <div class="jumbotron">
+                    <h4><strong>{$comment.comment}</strong></h4>
+                </div>
 
+                <br>
+                {if {$comment.grade} eq '1'}
+                    <img src="img/etoile.png" alt=""/>
+                {/if}
+                {if {$comment.grade} eq '2'}
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                {/if}
+                {if {$comment.grade} eq '3'}
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                {/if}
+                {if {$comment.grade} eq '4'}
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                {/if}
+                {if {$comment.grade} eq '5'}
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                    <img src="img/etoile.png" alt=""/>
+                {/if}
+            </div>
         {/foreach}
     </div>
     </h3>
@@ -48,14 +48,17 @@
         {elseif $enable_maj == 0}
             <h5 class="page-product-heading">
         {/if}
-        <strong><h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">
-            Je donne mon avis :
+        <strong>
+            <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">
+                Je donne mon avis :
             </h{$enable_pol}>
         </strong>
         </br></br>
         <form action="" method="POST" id="comment-form">
             <div class="form-group">
-                <label for="grade"><h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Note:</h{$enable_pol}></label>
+                <label for="grade">
+                    <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Note:</h{$enable_pol}>
+                </label>
                 <div class="row">
                     <div class="col-xs-4">
                         <select id="grade" class="form-control" name="grade">
@@ -69,7 +72,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="comment"><h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Commentaire : </h{$enable_pol}></label>
+                <label for="comment">
+                    <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Commentaire :
+                    </h{$enable_pol}</label>
                 <textarea name="comment" id="comment" class="form-control"></textarea>
             </div>
             <div class="submit">
