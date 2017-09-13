@@ -38,6 +38,7 @@ class Monmodule extends Module
         return $html . $this->renderForm();
     }
 
+
     public function renderForm()
     {
         $fields_form = array(
@@ -91,6 +92,7 @@ class Monmodule extends Module
 
     public function hookDisplayHeader($params)
     {
+
         $this->context->controller->addCSS($this->_path . '/css/style.css', 'all');
         return;
 
@@ -98,29 +100,29 @@ class Monmodule extends Module
 
     public function hookDisplayProductListFunctionalButtons($params)
     {
-        $product = $params['product'];
-        $products = array();
-
-        $id_product = $product['id_product'];
+        /*$this->assignConfiguration();
 
 
-        $attributes_by_product = Product::getAttributesInformationsByProduct($id_product);
-
-        $attributes_by_product =  AttributeGroup::getAttributesGroups($this->context->language->id);
 
 
-        p($attributes_by_product);
-        /*foreach($attributes_by_product as $attributes){
-            $products = $attributes_by_product['id_attributes_group'];
-        }
+               $attributes_by_product = Product::getAttributesInformationsByProduct($id_product);
+
+               $attributes_by_product = AttributeGroup::getAttributesGroups($this->context->language->id);
+
+
+              foreach($attributes_by_product as $attributes){
+                   $products = $attributes_by_product['id_attributes_group'];
+               }
 
 
 
 
 
-        // $this->smarty->assign('MM_ATTR_ID', $attributes_by_product);
+                $this->smarty->assign('MM_ATTR_ID', $attributes_by_product);
 
-       // return $products;
-*/
+              // return $products;
+       */
+
+
     }
 }

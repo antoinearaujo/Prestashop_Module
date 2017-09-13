@@ -27,6 +27,10 @@ class WelcomeModule extends Module
         Configuration::updateValue('WM_MOD_MSG', 'Entrez votre message ici');
 
         $this->registerHook('displayNav');
+        $this->registerHook('displayTop');
+        $this->registerHook('displayLeftColumn');
+
+
         return true;
     }
 
@@ -153,6 +157,16 @@ class WelcomeModule extends Module
 
         $this->assignConfiguration();
         return $this->display(__FILE__, 'displayNav.tpl');
+    }
+
+    public function hookDisplayTop($params)
+    {
+        return $this->hookDisplayNav($params);
+    }
+
+    public function hookDisplayLeftColumn($params)
+    {
+        return $this->hookDisplayNav($params);
     }
 
 
