@@ -25,6 +25,9 @@ class MyModComments extends Module
         // Activate every option by default
         Configuration::updateValue('MYMOD_GRADES', 1);
         Configuration::updateValue('MYMOD_COMMENTS', 1);
+        Configuration::updateValue('MYMOD_MAJ', "");
+        Configuration::updateValue('MYMOD_STY', "Cursive");
+
 
         $this->registerHook('displayProductTabContent');
         return true;
@@ -33,18 +36,10 @@ class MyModComments extends Module
     public function getContent() // Configuration du module (BackOffice)
     {
         $this->assignConfiguration();
-        $this->processConfiguration();
-        $html = '';
 
-        if (Tools::isSubmit('submit' . $this->name)) {
-            if (Validate::isUnsignedInt(Tools::getValue('MYMOD_GRADES')) && Validate::isUnsignedInt(Tools::getValue('MYMOD_COMMENTS'))) {
-                Configuration::updateValue('MYMOD_GRADES', (int)(Tools::getValue('MYMOD_GRADES')));
-                Configuration::updateValue('MYMOD_COMMENTS', (int)(Tools::getValue('MYMOD_COMMENTS')));
+        $html = $this->processConfiguration();
+        $html .= $this->displayConfirmation($this->l('The settings have been updated.'));
 
-//                $this->_clearCache('blockpaymentlogo.tpl');
-                $html .= $this->displayConfirmation($this->l('The settings have been updated.'));
-            }
-        }
         return $html . $this->renderForm();
     }
 
@@ -93,7 +88,84 @@ class MyModComments extends Module
                                 'label' => $this->l('Disabled')
                             )
                         )
-                    )
+                    ),
+                    array(
+                        'type' => 'switch',
+                        'label' => $this->l('Majuscule ?'),
+                        'desc' => $this->l(''),     // description
+                        'hint' => $this->l('Activer les majuscules'),     //description on scroll
+                        'name' => 'MYMOD_MAJ',
+                        'required' => true,
+                        'values' => array(
+                            array(
+                                'value' => 1,
+                                'label' => $this->l('Enabled')
+                            ),
+                            array(
+                                'value' => 0,
+                                'label' => $this->l('Disabled')
+                            )
+                        )
+                    ),
+                    array(
+                        'type' => 'color',
+                        'label' => $this->l('Couleur'),
+                        'name' => 'MYMOD_COL',
+                        'class' => 'lg',
+                        'required' => true,
+                        'desc' => $this->l(''),
+                        'hint' => $this->l('Choisir la couleur du texte'),
+                    ),
+                    array(
+                        'type' => 'select',
+                        'label' => $this->l('Style de la police'),
+                        'hint' => $this->l('Choisir le style de la police'),     //description on scroll
+                        'name' => 'MYMOD_STY',
+                        'required' => true,
+                        'options' => array(
+                            'query' => array(
+                                array(
+                                    'id_option' => 'Cursive',
+                                    'name' => 'Cursive'
+                                ),
+                                array(
+                                    'id_option' => 'Arial',
+                                    'name' => 'Arial'
+                                ),
+                                array(
+                                    'id_option' => 'Impact',
+                                    'name' => 'Impact'
+                                ),
+                            ),
+                            'id' => 'id_option',
+                            'name' => 'name'
+                        )
+                    ),
+                    array(
+                        'type' => 'select',
+                        'label' => $this->l('Taille de la police'),
+                        'hint' => $this->l('Choisir la taille de la police'),     //description on scroll
+                        'name' => 'MYMOD_POL',
+                        'required' => true,
+                        'options' => array(
+                            'query' => array(
+                                array(
+                                    'id_option' => '1',
+                                    'name' => 'Grosse Police'
+                                ),
+                                array(
+                                    'id_option' => '3',
+                                    'name' => 'Moyenne Police'
+                                ),
+                                array(
+                                    'id_option' => '5',
+                                    'name' => 'Petite Police'
+                                ),
+                            ),
+                            'id' => 'id_option',
+                            'name' => 'name'
+                        )
+                    ),
 
                 ),
                 'submit' => array(
@@ -124,6 +196,10 @@ class MyModComments extends Module
         return array(
             'MYMOD_GRADES' => Tools::getValue('MYMOD_GRADES', Configuration::get('MYMOD_GRADES')),
             'MYMOD_COMMENTS' => Tools::getValue('MYMOD_COMMENTS', Configuration::get('MYMOD_COMMENTS')),
+            'MYMOD_MAJ' => Tools::getValue('MYMOD_MAJ', Configuration::get('MYMOD_MAJ')),
+            'MYMOD_COL' => Tools::getValue('MYMOD_COL', Configuration::get('MYMOD_COL')),
+            'MYMOD_STY' => Tools::getValue('MYMOD_STY', Configuration::get('MYMOD_STY')),
+            'MYMOD_POL' => Tools::getValue('MYMOD_POL', Configuration::get('MYMOD_POL')),
 
         );
     }
@@ -131,25 +207,37 @@ class MyModComments extends Module
 
     public function processConfiguration() // Recuperation des valeurs
     {
-        if (Tools::isSubmit('submit_mymodcomments_form')) {
-            $enable_grades = Tools::getValue('enable_grades');
-            $enable_comments = Tools::getValue('enable_comments');
-            Configuration::updateValue('MYMOD_GRADES', $enable_grades);
-            Configuration::updateValue('MYMOD_COMMENTS', $enable_comments);
-            $this->context->smarty->assign('confirmation', 'ok'); // Message de confirmation
+        if (Tools::isSubmit('submit' . $this->name)) {
+            if (Validate::isUnsignedInt(Tools::getValue('MYMOD_GRADES')) && Validate::isMessage(Tools::getValue('MYMOD_COMMENTS'))) {
+                Configuration::updateValue('MYMOD_GRADES', (int)(Tools::getValue('MYMOD_GRADES')));
+                Configuration::updateValue('MYMOD_COMMENTS', (int)(Tools::getValue('MYMOD_COMMENTS')));
+                Configuration::updateValue('MYMOD_MAJ', (int)(Tools::getValue('MYMOD_MAJ')));
+                Configuration::updateValue('MYMOD_COL', (string)(Tools::getValue('MYMOD_COL')));
+                Configuration::updateValue('MYMOD_STY', (string)(Tools::getValue('MYMOD_STY')));
+                Configuration::updateValue('MYMOD_POL', (int)(Tools::getValue('MYMOD_POL')));
 
+            }
         }
     }
 
     public function assignConfiguration() // Assignation des variables
     {
 
-        $enable_grades = Configuration::get('MYMOD_GRADES');
-        $enable_comments = Configuration::get('MYMOD_COMMENTS');
+        $enable_grades = (bool)Configuration::get('MYMOD_GRADES');
+        $enable_comments = (bool)Configuration::get('MYMOD_COMMENTS');
+        $enable_maj = (bool)Configuration::get('MYMOD_MAJ');
+        $enable_col = (string)Configuration::get('MYMOD_COL');
+        $enable_sty = (string)Configuration::get('MYMOD_STY');
+        $enable_pol = (int)Configuration::get('MYMOD_POL');
 
         $this->context->smarty->assign(array(
             'enable_grades' => $enable_grades,
             'enable_comments' => $enable_comments,
+            'enable_maj' => $enable_maj,
+            'enable_col' => $enable_col,
+            'enable_sty' => $enable_sty,
+            'enable_pol' => $enable_pol,
+
         ));
 
     }
@@ -182,6 +270,12 @@ class MyModComments extends Module
     {
         $enable_grades = Configuration::get('MYMOD_GRADES');
         $enable_comments = Configuration::get('MYMOD_COMMENTS');
+        $enable_maj = Configuration::get('MYMOD_MAJ');
+        $enable_col = Configuration::get('MYMOD_COL');
+        $enable_sty = Configuration::get('MYMOD_STY');
+        $enable_pol = Configuration::get('MYMOD_POL');
+
+
         $id_product = Tools::getValue('id_product');
         $comments = Db::getInstance()->executeS('
         SELECT * FROM `' . _DB_PREFIX_ . 'mymod_comment`
@@ -190,6 +284,12 @@ class MyModComments extends Module
         $this->context->smarty->assign(array(
             'enable_grades' => $enable_grades,
             'enable_comments' => $enable_comments,
+            'enable_maj' => $enable_maj,
+            'enable_col' => $enable_col,
+            'enable_sty' => $enable_sty,
+            'enable_pol' => $enable_pol,
+
+
             'comments' => $comments,
         ));
 

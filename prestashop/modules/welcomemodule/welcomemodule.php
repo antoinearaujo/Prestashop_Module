@@ -114,8 +114,8 @@ class WelcomeModule extends Module
                                     'name' => 'Petite Police'
                                 ),
                             ),
-                            'id' => 'id_option',                           // The value of the 'id' key must be the same as the key for 'value' attribute of the <option> tag in each $options sub-array.
-                            'name' => 'name'                               // The value of the 'name' key must be the same as the key for the text content of the <option> tag in each $options sub-array.
+                            'id' => 'id_option',
+                            'name' => 'name'
                         )
                     ),
                     array(
@@ -177,7 +177,6 @@ class WelcomeModule extends Module
                         'desc' => $this->l(''),
                         'hint' => $this->l('Choisir la couleur du texte'),
                     ),
-
                     array(
                         'type' => 'textarea',
                         'label' => $this->l('Message'),
