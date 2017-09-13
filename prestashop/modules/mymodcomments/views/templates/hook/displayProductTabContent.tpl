@@ -4,12 +4,14 @@
     </h3>
     <div class="rte">
         {foreach from=$comments key=i item=comment name=foo}
-            {if $smarty.foreach.foo.index == {$enable_nbcom}}
-                {break}
+            {if $smarty.foreach.foo.index == {$enable_nbcom}} {* si le nombre de com choisi dans le backoffice est depasser*}
+                {break} {* on stoppe la boucle *}
             {/if}
             <div class="well">
                 <div class="jumbotron">
-                    <h4><strong>{$comment.comment}</strong></h4>
+                    <h{$enable_pol} style="font-family: {$enable_sty};color: {$enable_col}">
+                        <strong>{$comment.comment}</strong>
+                    </h{$enable_pol}>
                 </div>
 
                 <br>
