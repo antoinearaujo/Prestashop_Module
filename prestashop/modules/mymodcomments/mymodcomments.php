@@ -31,6 +31,7 @@ class MyModComments extends Module
 
         $this->registerHook('displayProductTabContent');
         $this->registerHook('displayProductListFunctionalButtons');
+        $this->registerHook('displayHomeTab');
         return true;
     }
 
@@ -281,6 +282,10 @@ class MyModComments extends Module
         return $this->display(__FILE__, 'displayProductListFunctionalButtons.tpl');
     }
 
+    public function displayHomeTab($params)
+    {
+        return $this->hookDisplayProductListFunctionalButtons($params);
+    }
 
     public function processProductTabContent()// Insertion commentaire du client dans la BDD
     {
