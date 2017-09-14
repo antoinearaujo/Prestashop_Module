@@ -9,9 +9,17 @@
             {/if}
             <div class="well">
                 <div class="jumbotron">
-                    <h{$enable_pol} style="font-family: {$enable_sty};color: {$enable_col}">
-                        <strong>{$comment.comment}</strong>
-                    </h{$enable_pol}>
+                    {if $enable_maj eq 1}
+                        <h{$enable_pol}
+                                style="font-family: {$enable_sty};color: {$enable_col};text-transform: uppercase;">
+                            <strong>{$comment.comment}</strong>
+                        </h{$enable_pol}>
+                    {elseif $enable_maj eq 0}
+                        <h{$enable_pol} style="font-family: {$enable_sty};color: {$enable_col}">
+                            <strong>{$comment.comment}</strong>
+                        </h{$enable_pol}>
+                    {/if}
+
                 </div>
 
                 <br>

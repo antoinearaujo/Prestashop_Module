@@ -30,6 +30,7 @@ class MyModComments extends Module
 
 
         $this->registerHook('displayProductTabContent');
+        $this->registerHook('displayProductListFunctionalButtons');
         return true;
     }
 
@@ -264,6 +265,23 @@ class MyModComments extends Module
         return $this->display(__FILE__, 'displayProductTabContent.tpl');
     }
 
+    public function hookDisplayProductListFunctionalButtons($params)
+    {
+
+        //--Choppe la note generale d'un produit
+        $id_product = $params['product']['id_product']; // recuperation de l'id du produit concerné
+        $grade_general = Db::getInstance()->getRow('
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `' . _DB_PREFIX_ . 'mymod_comment`
+        WHERE `id_product` = ' . $id_product); // requete pour avoir la moyenne des notes de CE produit
+
+        $this->context->smarty->assign('grade_general', $grade_general);
+
+
+        return $this->display(__FILE__, 'displayProductListFunctionalButtons.tpl');
+    }
+
+
     public function processProductTabContent()// Insertion commentaire du client dans la BDD
     {
         if (Tools::isSubmit('mymod_pc_submit_comment')) {
@@ -277,12 +295,15 @@ class MyModComments extends Module
                 'date_add' => date('Y-m-d H:i:s'),
             );
             Db::getInstance()->insert('mymod_comment', $insert);
-
+            $url = $this->context->link->getProductLink($this->context->controller->getProduct());
+            Tools::redirect($url);
+            exit;
         }
     }
 
     public function assignProductTabContent() // Assignation des valeurs a des variables
     {
+        $id_product = Tools::getValue('id_product'); // recuperation du produit concerné
         $enable_grades = Configuration::get('MYMOD_GRADES');
         $enable_comments = Configuration::get('MYMOD_COMMENTS');
         $enable_maj = Configuration::get('MYMOD_MAJ');
@@ -292,10 +313,13 @@ class MyModComments extends Module
         $enable_nbcom = Configuration::get('MYMOD_NBCOM');
 
 
-        $id_product = Tools::getValue('id_product');
+        //--Choppe les comms dans la bdd
+
         $comments = Db::getInstance()->executeS('
         SELECT * FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . (int)$id_product);
+
+        // affiche avec smarty
 
         $this->context->smarty->assign(array(
             'enable_grades' => $enable_grades,
@@ -305,7 +329,6 @@ class MyModComments extends Module
             'enable_sty' => $enable_sty,
             'enable_pol' => $enable_pol,
             'enable_nbcom' => $enable_nbcom,
-
             'comments' => $comments,
         ));
 
