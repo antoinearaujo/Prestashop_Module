@@ -63,7 +63,6 @@
     <style>
         #etoile {
             position: absolute;
-
             width: 50px;
             height: 50px;
 
