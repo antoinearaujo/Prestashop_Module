@@ -5,7 +5,11 @@
 </br>
 
 <h5>
-    Nombre d'avis : {$grade_general.nbAvis}
+    {if $grade_general.nbAvis == 1}
+        {$grade_general.nbAvis} personne a donné son avis
+    {else}
+        {$grade_general.nbAvis} personnes ont donné leurs avis
+    {/if}
 </h5>
 
 

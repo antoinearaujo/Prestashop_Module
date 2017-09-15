@@ -26,3 +26,46 @@
         SELECT COUNT(*) AS `nbAvis`, AVG(`grade`) AS `moyAvis` 
         FROM `ps_mymod_comment`
         WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:23:37: Table 'testmodule2.ps_mymod_comment_website' doesn't exist<br /><br /><pre>
+        SELECT * FROM `ps_mymod_comment_website`
+        WHERE `id_product` = 0</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:26:55: Table 'testmodule2.ps_mymod_comment_website' doesn't exist<br /><br /><pre>
+        SELECT * FROM `ps_mymod_comment_website`
+        WHERE `id_product` = 0</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:26:56: Table 'testmodule2.ps_mymod_comment_website' doesn't exist<br /><br /><pre>
+        SELECT * FROM `ps_mymod_comment_website`
+        WHERE `id_product` = 0</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:28:52: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:30:47: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:30:48: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:32:37: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:34:10: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:34:11: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:34:11: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 3<br /><br /><pre>
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        FROM `ps_mymod_comment_website`
+        WHERE `id_product` = LIMIT 1</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:35:48: Unknown column 'id_product' in 'field list'<br /><br /><pre>INSERT INTO `ps_mymod_comment_website` (`id_product`, `grade`, `comment`, `date_add`) VALUES ('0', '1', 'ffff', '2017-09-14 17:35:48')</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:35:56: Unknown column 'id_product' in 'field list'<br /><br /><pre>INSERT INTO `ps_mymod_comment_website` (`id_product`, `grade`, `comment`, `date_add`) VALUES ('0', '1', 'ffff', '2017-09-14 17:35:56')</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:36:10: Unknown column 'id_product' in 'where clause'<br /><br /><pre>
+        SELECT * FROM `ps_mymod_comment_website`
+        WHERE `id_product` = 0</pre> at line 791 in file classes/db/Db.php
+*ERROR* 	2017/09/14 - 17:36:49: Unknown column 'id_product' in 'field list'<br /><br /><pre>INSERT INTO `ps_mymod_comment_website` (`id_product`, `grade`, `comment`, `date_add`) VALUES ('0', '5', 'Tres bon site', '2017-09-14 17:36:49')</pre> at line 791 in file classes/db/Db.php

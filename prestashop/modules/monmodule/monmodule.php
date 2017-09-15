@@ -100,29 +100,36 @@ class Monmodule extends Module
 
     public function hookDisplayProductListFunctionalButtons($params)
     {
-        /*$this->assignConfiguration();
+
+
+        /*$id_product = $params['product']['id_product'];
+        $attribute = '';
+
+        $attributes_by_product = Db::getInstance()->executeS('
+			SELECT L.`name` AS `nom`
+			FROM `' . _DB_PREFIX_ . 'attribute_lang` L,`' . _DB_PREFIX_ . 'product_attribute` A,`' . _DB_PREFIX_ . 'product` P
+			WHERE L.`id_attribute` = A.`id_product_attribute` AND A.`id_product`= ' . $id_product); // requete pour avoir la moyenne des notes de CE produit
+
+        for ($i = 0; i<count($attributes_by_product); $i++) {
+            $attribute = $attribute + $attributes_by_product[$i];
+
+        }
+
+
+
+         $attributes_by_product = Product::getAttributesInformationsByProduct($id_product);
+
+        p($attributes_by_product);
 
 
 
 
-               $attributes_by_product = Product::getAttributesInformationsByProduct($id_product);
 
-               $attributes_by_product = AttributeGroup::getAttributesGroups($this->context->language->id);
-
-
-              foreach($attributes_by_product as $attributes){
-                   $products = $attributes_by_product['id_attributes_group'];
-               }
+        $this->smarty->assign('attribute', $attribute);
 
 
-
-
-
-                $this->smarty->assign('MM_ATTR_ID', $attributes_by_product);
-
-              // return $products;
-       */
-
+        return $this->display(__FILE__, 'monmodule.tpl');
+ */
 
     }
 }

@@ -1,15 +1,24 @@
-<h3 class="well">Avis sur le site :</h3>
+{if $enable_comments || $enable_grades} {* si comments est a true (commentaires) *}
+    <div id="categories_block_left" class="block">
+        <h3 class="well">Avis sur le site :</h3>
+    </div>
+{/if}
 
+{if $enable_grades} {* si comments est a true (commentaires) *}
+    <img id="back" src="img/etoiles-back.png"/>
+    <img id="etoile" src="img/etoiles.png" style="clip: rect(0px, {$grade_general.moyAvis}px, 60px, 0px);"/>
+    <h5>
+        {if $grade_general.nbAvis == 1}
+            {$grade_general.nbAvis} personne a donné son avis
+        {else}
+            {$grade_general.nbAvis} personnes ont donné leurs avis
+        {/if}
+    </h5>
+{/if}
 
-<img id="back" src="img/etoiles-back.png"/>
-<img id="etoile" src="img/etoiles.png" style="clip: rect(0px, {$grade_general.moyAvis}px, 60px, 0px);"/>
 
 </br>
 </br>
-
-<h5>
-    Nombre d'avis : {$grade_general.nbAvis}
-</h5>
 
 
 {if $enable_comments} {* si comments est a true (commentaires) *}

@@ -3,7 +3,7 @@
 #best-sellers_block_right li {
 	float:none;
 	padding:10px 0;
-	border-bottom:1px dotted #ccc
+	border-bottom:1px dotted #6D1818
 }
 #best-sellers_block_right li.last_item {border:none}
 #best-sellers_block_right li a.content_img {
