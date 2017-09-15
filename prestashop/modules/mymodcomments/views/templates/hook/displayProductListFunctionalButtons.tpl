@@ -15,7 +15,8 @@
 
 <strong>Dernier Commentaire :</strong></br>
 {$last_comment.comment}
-</h5>
+</br>
+</br>
 
 
 <style>

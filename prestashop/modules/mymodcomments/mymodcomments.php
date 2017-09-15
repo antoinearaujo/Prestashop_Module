@@ -279,7 +279,8 @@ class MyModComments extends Module
         $last_comment = Db::getInstance()->getRow('
         SELECT `comment` AS `comment` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment` C,`' . _DB_PREFIX_ . 'product`
-        WHERE C.`id_product` = ' . $id_product);
+        WHERE C.`id_product` = ' . $id_product . '
+        ORDER BY C.`date_add` DESC');
 
 
 
