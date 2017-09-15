@@ -278,6 +278,7 @@ class MyModComments extends Module
         FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . $id_product); // requete pour avoir la moyenne des notes de CE produit
 
+        // Choppe le dernier commentaire
         $last_comment = Db::getInstance()->getRow('
         SELECT `comment` AS `comment` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment` C,`' . _DB_PREFIX_ . 'product`

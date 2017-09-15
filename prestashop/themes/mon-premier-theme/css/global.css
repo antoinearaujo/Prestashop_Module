@@ -6457,7 +6457,7 @@ table.table_block td {
 
 #home-page-tabs {
   border: none;
-  background: #fff; }
+  background: darkred; }
   @media (min-width: 768px) {
     #home-page-tabs {
       padding: 10px 0;
@@ -6466,7 +6466,7 @@ table.table_block td {
     margin-bottom: 0; }
     @media (min-width: 991px) {
       #home-page-tabs > li {
-        border-left: 1px solid #d6d4d4;
+        border-left: 1px solid darkred;
         margin: 0 0px 0 9px;
         padding: 0 0px 0 9px; } }
     @media (max-width: 479px) {
