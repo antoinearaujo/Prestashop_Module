@@ -1731,23 +1731,23 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 
 .btn-success {
   color: #fff;
-  background-color: #46a74e;
-  border-color: #3e9546; }
+  background-color: darkred;
+  border-color: darkred; }
   .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active {
     color: #fff;
-    background-color: #3a8a41;
-    border-color: #2c6a31; }
+    background-color: darkred;
+    border-color: darkred; }
   .open .btn-success.dropdown-toggle {
     color: #fff;
-    background-color: #3a8a41;
-    border-color: #2c6a31; }
+    background-color: darkred;
+    border-color: darkred; }
   .btn-success:active, .btn-success.active {
     background-image: none; }
   .open .btn-success.dropdown-toggle {
     background-image: none; }
   .btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled:active, .btn-success.disabled.active, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focus, .btn-success[disabled]:active, .btn-success[disabled].active, fieldset[disabled] .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled] .btn-success:active, fieldset[disabled] .btn-success.active {
-    background-color: #46a74e;
-    border-color: #3e9546; }
+    background-color: darkred;
+    border-color: darkred; }
 
 .btn-info {
   color: #fff;
@@ -2828,7 +2828,7 @@ input[type="button"].btn-block {
   background-color: #aa1449;
   border: 1px solid #F20000; }
   .label-success[href]:hover, .label-success[href]:focus {
-    background-color: #3aae43; }
+    background-color: darkred; }
 
 .label-info {
   background-color: #5192f3;
@@ -3017,7 +3017,7 @@ a.thumbnail:focus {
   animation: progress-bar-stripes 2s linear infinite; }
 
 .progress-bar-success {
-  background-color: #46a74e; }
+  background-color: darkred; }
   .progress-striped .progress-bar-success {
     background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -7002,7 +7002,7 @@ ul.step {
         color: #fff;
         text-shadow: 1px 1px #f90202;
         border: 1px solid;
-        border-color: #73ca77 #74c776 #74c175 #74c776;
+        border-color: darkred darkred darkred darkred;
         position: relative; }
         @media (min-width: 992px) {
           ul.step li.step_current span {
