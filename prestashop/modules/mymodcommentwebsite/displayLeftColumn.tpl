@@ -7,12 +7,18 @@
 {if $enable_grades} {* si comments est a true (commentaires) *}
     <img id="back" src="img/etoiles-back.png"/>
     <img id="etoile" src="img/etoiles.png" style="clip: rect(0px, {$grade_general.moyAvis}px, 60px, 0px);"/>
-    <h5>
+    </br></br>
+    <h5 style="color: white;">
         {if $grade_general.nbAvis == 1}
             {$grade_general.nbAvis} personne a donné son avis
         {else}
             {$grade_general.nbAvis} personnes ont donné leurs avis
         {/if}
+    </h5>
+    <strong>Dernier commentaire : </strong></br>
+    Le {$last_comment.date|date_format} à ({$last_comment.date|date_format:'%H:%M:%S'})</strong>
+    </br></br>
+    {$last_comment.comment}
     </h5>
 {/if}
 

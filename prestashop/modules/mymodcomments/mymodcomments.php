@@ -272,13 +272,18 @@ class MyModComments extends Module
     {
 
         //--Choppe la note generale d'un produit
+
         $id_product = $params['product']['id_product']; // recuperation de l'id du produit concerné
         $grade_general = Db::getInstance()->getRow('
         SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . $id_product); // requete pour avoir la moyenne des notes de CE produit
 
+
+
+
         // Choppe le dernier commentaire
+
         $last_comment = Db::getInstance()->getRow('
         SELECT `comment` AS `comment` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment` C,`' . _DB_PREFIX_ . 'product`

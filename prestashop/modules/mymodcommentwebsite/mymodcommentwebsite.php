@@ -268,8 +268,15 @@ class MyModCommentWebSite extends Module
         SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment_website`'); // requete pour avoir la moyenne des notes de CE produit
 
+        // Choppe le dernier commentaire
+        $last_comment = Db::getInstance()->getRow('
+        SELECT `comment` AS `comment`, C.`date_add` AS `date`
+        FROM `' . _DB_PREFIX_ . 'mymod_comment_website` C,`' . _DB_PREFIX_ . 'product`
+        ORDER BY C.`date_add` DESC');
 
-        $this->context->smarty->assign('grade_general', $grade_general);
+        $this->context->smarty->assign(array(
+            'grade_general' => $grade_general,
+            'last_comment' => $last_comment));
 
 
         return $this->display(__FILE__, 'displayLeftColumn.tpl');
@@ -304,8 +311,13 @@ class MyModCommentWebSite extends Module
         //--Choppe les comms dans la bdd
 
         $comments = Db::getInstance()->executeS('
-        SELECT * FROM `' . _DB_PREFIX_ . 'mymod_comment_website`
+        SELECT `grade` AS `grade`, `comment` AS `comment`, `date_add` AS `date` FROM `' . _DB_PREFIX_ . 'mymod_comment_website`
         ');
+
+
+        //--Choppe le dernier commentaire
+        $id_product = Tools::getValue('id_product');
+
 
         // affiche avec smarty
 
@@ -318,6 +330,7 @@ class MyModCommentWebSite extends Module
             'enable_pol' => $enable_pol,
             'enable_nbcom' => $enable_nbcom,
             'comments' => $comments,
+
         ));
 
 
