@@ -4,12 +4,17 @@
 </br>
 </br>
 
-<h5>
-    {if $grade_general.nbAvis == 1}
-        {$grade_general.nbAvis} personne a donné son avis
-    {else}
-        {$grade_general.nbAvis} personnes ont donné leurs avis
-    {/if}
+<br>
+{if $grade_general.nbAvis == 1}
+    {$grade_general.nbAvis} personne a donné son avis
+{else}
+    {$grade_general.nbAvis} personnes ont donné leurs avis
+{/if}
+</br>
+</br>
+
+<strong>Dernier Commentaire :</strong></br>
+{$last_comment.comment}
 </h5>
 
 

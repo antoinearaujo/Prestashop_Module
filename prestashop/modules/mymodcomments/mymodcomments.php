@@ -276,7 +276,16 @@ class MyModComments extends Module
         FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . $id_product); // requete pour avoir la moyenne des notes de CE produit
 
-        $this->context->smarty->assign('grade_general', $grade_general);
+        $last_comment = Db::getInstance()->getRow('
+        SELECT `comment` AS `comment` 
+        FROM `' . _DB_PREFIX_ . 'mymod_comment` C,`' . _DB_PREFIX_ . 'product`
+        WHERE C.`id_product` = ' . $id_product);
+
+
+
+        $this->context->smarty->assign(array(
+            'grade_general' => $grade_general,
+            'last_comment' => $last_comment));
 
 
         return $this->display(__FILE__, 'displayProductListFunctionalButtons.tpl');
