@@ -251,7 +251,7 @@ span.view_scroll_spacer {
       border: none;
       padding: 0; }
     #usefull_link_block li a {
-      color: #777676;
+      color: white;
       font-weight: 700;
       position: relative;
       padding-left: 30px;
@@ -350,7 +350,7 @@ span.view_scroll_spacer {
   margin: 10px 0 -5px;
   position: relative; }
   #product p#loyalty b {
-    color: #333; }
+    color: white; }
   #product p#loyalty:before {
     content: "\f024";
     font-family: "FontAwesome";
@@ -413,7 +413,7 @@ span.view_scroll_spacer {
           height: 22px;
           width: 22px; }
       #attributes .attribute_list #color_to_pick_list li.selected {
-        border: 1px solid #4d4d4d; }
+        border: 1px solid white; }
 
 .product_attributes,
 .box-cart-bottom {

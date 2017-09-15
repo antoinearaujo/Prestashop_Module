@@ -1,2 +1,0 @@
-        {foreach from=$comments key=i item=comment name=foo}
-            {if $smarty.foreach.foo.index == 3}

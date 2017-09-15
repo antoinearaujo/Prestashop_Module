@@ -295,7 +295,6 @@ class MyModComments extends Module
     }
 
 
-
     public function displayHomeTab($params)
     {
         return $this->hookDisplayProductListFunctionalButtons($params);
@@ -335,8 +334,9 @@ class MyModComments extends Module
         //--Choppe les comms dans la bdd
 
         $comments = Db::getInstance()->executeS('
-        SELECT * FROM `' . _DB_PREFIX_ . 'mymod_comment`
+        SELECT `date_add` AS `date`, `comment` AS `comment`, `grade` AS `grade` FROM `' . _DB_PREFIX_ . 'mymod_comment`
         WHERE `id_product` = ' . (int)$id_product);
+
 
         // affiche avec smarty
 

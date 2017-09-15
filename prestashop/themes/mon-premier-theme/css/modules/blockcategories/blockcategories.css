@@ -48,7 +48,7 @@
   position: relative; }
   #categories_block_left li a {
     font-weight: bold;
-    color: white;
+    color: darkred;
     display: block;
     font-size: 13px;
     line-height: 30px;

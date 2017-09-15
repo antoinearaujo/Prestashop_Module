@@ -1,5 +1,5 @@
 {if $enable_comments || $enable_grades} {* si au moins une des deux variables est a true *}
-    <h3 class="page-product-heading">
+    <h3 class="page-product-heading" style="color: black">
         AVIS SUR CE PRODUIT
     </h3>
     <div class="rte">
@@ -12,11 +12,13 @@
                     {if $enable_maj eq 1}
                         <h{$enable_pol}
                                 style="font-family: {$enable_sty};color: {$enable_col};text-transform: uppercase;">
-                            <strong>{$comment.comment}</strong>
+                            <strong>Le {$comment.date|date_format}
+                                à {$comment.date|date_format:'%H:%M:%S'}</br></br>{$comment.comment}</strong>
                         </h{$enable_pol}>
                     {elseif $enable_maj eq 0}
-                        <h{$enable_pol} style="font-family: {$enable_sty};color: {$enable_col}">
-                            <strong>{$comment.comment}</strong>
+                        <h{$enable_pol} style="font-family: {$enable_sty};color: black">
+                            <strong>Le {$comment.date|date_format}
+                                à {$comment.date|date_format:'%H:%M:%S'}</br></br>{$comment.comment}</strong>
                         </h{$enable_pol}>
                     {/if}
 
@@ -59,7 +61,7 @@
             <h5 class="page-product-heading">
         {/if}
         <strong>
-            <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">
+            <h{$enable_pol} style="color: white; font-family: {$enable_sty};">
                 Je donne mon avis :
             </h{$enable_pol}>
         </strong>
@@ -67,7 +69,7 @@
         <form action="" method="POST" id="comment-form">
             <div class="form-group">
                 <label for="grade">
-                    <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Note:</h{$enable_pol}>
+                    <h{$enable_pol} style="color: white; font-family: {$enable_sty};">Note:</h{$enable_pol}>
                 </label>
                 <div class="row">
                     <div class="col-xs-4">
@@ -83,7 +85,7 @@
             </div>
             <div class="form-group">
                 <label for="comment">
-                    <h{$enable_pol} style="color: {$enable_col}; font-family: {$enable_sty};">Commentaire :
+                    <h{$enable_pol} style="color: white; font-family: {$enable_sty};">Commentaire :
                     </h{$enable_pol}</label>
                 <textarea name="comment" id="comment" class="form-control"></textarea>
             </div>
