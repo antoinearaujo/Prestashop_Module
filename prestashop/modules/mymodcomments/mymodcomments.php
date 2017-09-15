@@ -32,6 +32,8 @@ class MyModComments extends Module
         $this->registerHook('displayProductTabContent');
         $this->registerHook('displayProductListFunctionalButtons');
         $this->registerHook('displayHomeTab');
+        $this->registerHook('displayProductDeliveryTime');
+
         return true;
     }
 
@@ -283,7 +285,6 @@ class MyModComments extends Module
         ORDER BY C.`date_add` DESC');
 
 
-
         $this->context->smarty->assign(array(
             'grade_general' => $grade_general,
             'last_comment' => $last_comment));
@@ -291,6 +292,8 @@ class MyModComments extends Module
 
         return $this->display(__FILE__, 'displayProductListFunctionalButtons.tpl');
     }
+
+
 
     public function displayHomeTab($params)
     {
