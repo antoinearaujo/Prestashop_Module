@@ -16,7 +16,7 @@
         {/if}
     </h5>
     <strong>Dernier commentaire : </strong></br>
-    Le {$last_comment.date|date_format} à ({$last_comment.date|date_format:'%H:%M:%S'})</strong>
+    Le {$last_comment.date|date_format} à ({$last_comment.date|date_format:'%H:%M'})</strong>
     </br></br>
     {$last_comment.comment}
     </h5>
@@ -38,7 +38,6 @@
                 Je donne mon avis :
             </h{$enable_pol}>
         </strong>
-        </br></br>
         <form action="" method="POST" id="comment-form">
             <div class="form-group">
                 <label for="grade">
