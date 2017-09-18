@@ -32,7 +32,6 @@ class MyModComments extends Module
         $this->registerHook('displayProductTabContent');
         $this->registerHook('displayProductListFunctionalButtons');
         $this->registerHook('displayHomeTab');
-        $this->registerHook('displayProductDeliveryTime');
 
         return true;
     }
@@ -327,13 +326,13 @@ class MyModComments extends Module
     public function assignProductTabContent() // Assignation des valeurs a des variables
     {
         $id_product = Tools::getValue('id_product'); // recuperation du produit concerné
-        $enable_grades = Configuration::get('MYMOD_GRADES');
-        $enable_comments = Configuration::get('MYMOD_COMMENTS');
-        $enable_maj = Configuration::get('MYMOD_MAJ');
-        $enable_col = Configuration::get('MYMOD_COL');
-        $enable_sty = Configuration::get('MYMOD_STY');
-        $enable_pol = Configuration::get('MYMOD_POL');
-        $enable_nbcom = Configuration::get('MYMOD_NBCOM');
+        $enable_grades = Configuration::get('MYMOD_GRADES'); // Boutton Avis
+        $enable_comments = Configuration::get('MYMOD_COMMENTS'); //Boutton Commentaire
+        $enable_maj = Configuration::get('MYMOD_MAJ'); // Boutton Majuscule
+        $enable_col = Configuration::get('MYMOD_COL'); // Choix Couleur
+        $enable_sty = Configuration::get('MYMOD_STY'); // Boutton style Police
+        $enable_pol = Configuration::get('MYMOD_POL'); // Boutton taille Police
+        $enable_nbcom = Configuration::get('MYMOD_NBCOM'); // Choix nb commentaire
 
 
         //--Choppe les comms dans la bdd
