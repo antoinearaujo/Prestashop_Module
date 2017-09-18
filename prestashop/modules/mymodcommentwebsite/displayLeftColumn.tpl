@@ -4,10 +4,32 @@
     </div>
 {/if}
 
-{if $enable_grades} {* si comments est a true (commentaires) *}
-    <img id="back" src="img/etoiles-back.png"/>
-    <img id="etoile" src="img/etoiles.png" style="clip: rect(0px, {$grade_general.moyAvis}px, 60px, 0px);"/>
-    </br></br>
+{if $enable_grades}
+    {if (int)$grade_general.moyAvis lte 50}
+        <div class="progress">
+            <div class="progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="{$grade_general.moyAvis}"
+                 aria-valuemin="0" aria-valuemax="100" style="width:{$grade_general.moyAvis}%">
+                {(int)$grade_general.moyAvis}%
+            </div>
+        </div>
+    {elseif (int)$grade_general.moyAvis lte 70}
+        <div class="progress">
+            <div class="progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="{$grade_general.moyAvis}"
+                 aria-valuemin="0" aria-valuemax="100" style="width:{$grade_general.moyAvis}%">
+                {(int)$grade_general.moyAvis}%
+            </div>
+        </div>
+    {elseif (int)$grade_general.moyAvis lte 100}
+        <div class="progress">
+            <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{$grade_general.moyAvis}"
+                 aria-valuemin="0" aria-valuemax="100" style="width:{$grade_general.moyAvis}%">
+                {(int)$grade_general.moyAvis}%
+            </div>
+        </div>
+    {/if}
+
+
+    {* Personne qui ont donné leurs avis *}
     <h5 style="color: white;">
         {if $grade_general.nbAvis == 1}
             {$grade_general.nbAvis} personne a donné son avis
@@ -15,7 +37,8 @@
             {$grade_general.nbAvis} personnes ont donné leurs avis
         {/if}
     </h5>
-    <strong>Dernier commentaire : </strong></br>
+    <strong>Dernier commentaire : </strong>
+    </br>
     Le {$last_comment.date|date_format} à ({$last_comment.date|date_format:'%H:%M'})</strong>
     </br></br>
     {$last_comment.comment}
@@ -73,18 +96,3 @@
     </h5>
     {/if}
 
-
-    <style>
-        #etoile {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-
-        }
-
-        #back {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-        }
-    </style>

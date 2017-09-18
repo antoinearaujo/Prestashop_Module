@@ -28,7 +28,6 @@ class MyModCommentWebSite extends Module
         Configuration::updateValue('MYMOD_MAJ', "");
         Configuration::updateValue('MYMOD_STY', "Cursive");
 
-
         $this->registerHook('displayLeftColumn');
         return true;
     }
@@ -211,6 +210,8 @@ class MyModCommentWebSite extends Module
             'MYMOD_STY' => Tools::getValue('MYMOD_STY', Configuration::get('MYMOD_STY')),
             'MYMOD_POL' => Tools::getValue('MYMOD_POL', Configuration::get('MYMOD_POL')),
             'MYMOD_NBCOM' => Tools::getValue('MYMOD_NBCOM', Configuration::get('MYMOD_NBCOM')),
+            'MYMOD_BAR' => Tools::getValue('MYMOD_BAR', Configuration::get('MYMOD_BAR')),
+
 
         );
     }
@@ -227,6 +228,7 @@ class MyModCommentWebSite extends Module
                 Configuration::updateValue('MYMOD_STY', (string)(Tools::getValue('MYMOD_STY')));
                 Configuration::updateValue('MYMOD_POL', (int)(Tools::getValue('MYMOD_POL')));
                 Configuration::updateValue('MYMOD_NBCOM', (int)(Tools::getValue('MYMOD_NBCOM')));
+                Configuration::updateValue('MYMOD_BAR', (string)(Tools::getValue('MYMOD_BAR')));
 
             }
         }
@@ -242,6 +244,7 @@ class MyModCommentWebSite extends Module
         $enable_sty = (string)Configuration::get('MYMOD_STY');
         $enable_pol = (int)Configuration::get('MYMOD_POL');
         $enable_nbcom = (int)Configuration::get('MYMOD_NBCOM');
+
 
         $this->context->smarty->assign(array(
             'enable_grades' => $enable_grades,
@@ -265,7 +268,7 @@ class MyModCommentWebSite extends Module
 
         //--Choppe la note generale d'un produit
         $grade_general = Db::getInstance()->getRow('
-        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*10) AS `moyAvis` 
+        SELECT COUNT(*) AS `nbAvis`, AVG(`grade`*20) AS `moyAvis` 
         FROM `' . _DB_PREFIX_ . 'mymod_comment_website`'); // requete pour avoir la moyenne des notes de CE produit
 
         // Choppe le dernier commentaire
@@ -273,6 +276,7 @@ class MyModCommentWebSite extends Module
         SELECT `comment` AS `comment`, C.`date_add` AS `date`
         FROM `' . _DB_PREFIX_ . 'mymod_comment_website` C,`' . _DB_PREFIX_ . 'product`
         ORDER BY C.`date_add` DESC');
+
 
         $this->context->smarty->assign(array(
             'grade_general' => $grade_general,
